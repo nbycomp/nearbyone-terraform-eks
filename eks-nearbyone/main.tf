@@ -37,25 +37,6 @@ module "eks_cluster" {
 }
 
 
-module "external_dns" {
-
-  source  = "DNXLabs/eks-external-dns/aws"
-  version = "0.1.4"
-
-  cluster_name                     = local.config["cluster_name"]
-  cluster_identity_oidc_issuer     = module.eks_cluster.cluster_oidc_issuer_url
-  cluster_identity_oidc_issuer_arn = module.eks_cluster.oidc_provider_arn
-
-  settings = {
-    "policy"        = "upsert-only" # Modify how DNS records are sychronized between sources and providers.
-    "sources"       = ["service", "ingress"]
-    "provider"      = "aws"
-    "aws.region"    = local.config["aws_region"]
-    "registry"      = "txt"
-    "domainFilters" = [for n in local.config["tls_names"] : replace(n, "/^[^.]*\\./", "")]
-  }
-}
-
 module "load_balancer_controller" {
   source  = "DNXLabs/eks-lb-controller/aws"
   version = "0.5.1"
