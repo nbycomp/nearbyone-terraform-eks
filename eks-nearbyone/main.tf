@@ -24,11 +24,6 @@ provider "kubernetes" {
   }
 }
 
-module "acm_certs" {
-  source    = "./certs"
-  tls_names = local.config["tls_names"]
-}
-
 module "eks_cluster" {
   source        = "./cluster"
   cluster_name  = local.config["cluster_name"]
@@ -36,6 +31,14 @@ module "eks_cluster" {
   max_nodes     = local.config["max_nodes"]
 }
 
+module "cert-manager" {
+  source  = "basisai/cert-manager/helm"
+  version = "0.1.3"
+  extra_args = [
+    "--dns01-recursive-nameservers-only",
+    "--dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53"
+  ]
+}
 
 module "load_balancer_controller" {
   source  = "DNXLabs/eks-lb-controller/aws"
