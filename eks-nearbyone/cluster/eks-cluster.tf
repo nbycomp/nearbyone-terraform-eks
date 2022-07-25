@@ -31,7 +31,7 @@ module "eks" {
       desired_size           = var.initial_nodes
       create_launch_template = false
       launch_template_name   = ""
-      name                   = "NG-1-${var.cluster_name}"
+      name                   = substr("NG1-${var.cluster_name}", 0, 30)
     },
   }
 }
