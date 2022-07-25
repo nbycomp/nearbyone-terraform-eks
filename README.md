@@ -26,9 +26,6 @@ For explanation purposes, the below sample includes comments, which are not allo
 
 ```
 config = {
-  tls_names = [
-    "clustername.domain.com",      # DNS name which will be used to access the NearbyOne dashboard
-  ]
   aws_region    = "eu-west-2"      # replace with your actual region
   cluster_name  = "clustername"    # set to a name of your liking, will be shown in the EKS dashboard
   initial_nodes = 2
@@ -95,4 +92,3 @@ You can now install NearbyOne.
 
 - Delete all NearbyOne environments running on the custer
 - `terraform destroy`
-
