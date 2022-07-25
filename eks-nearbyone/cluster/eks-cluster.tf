@@ -4,7 +4,7 @@ variable "max_nodes" {}
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  version         = "18.10.1"
+  version         = "18.26.6"
   cluster_name    = var.cluster_name
   cluster_version = "1.21"
 
