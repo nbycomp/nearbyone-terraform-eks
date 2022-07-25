@@ -26,10 +26,11 @@ For explanation purposes, the below sample includes comments, which are not allo
 
 ```
 config = {
-  aws_region    = "eu-west-2"      # replace with your actual region
-  cluster_name  = "clustername"    # set to a name of your liking, will be shown in the EKS dashboard
-  initial_nodes = 2
-  allowed_users = {
+  aws_region     = "eu-west-2"      # replace with your actual region
+  cluster_name   = "clustername"    # set to a name of your liking, will be shown in the EKS dashboard
+  initial_nodes  = 2
+  instance_types = ["m4.2xlarge"]
+  allowed_users  = {
     # AWS usernames and ARNs of users which will be allowed to use the cluster
     "user1" = "arn:aws:iam::111111111111:user/user1",
     "user2" = "arn:aws:iam::111111111111:user/user2",

@@ -25,10 +25,11 @@ provider "kubernetes" {
 }
 
 module "eks_cluster" {
-  source        = "./cluster"
-  cluster_name  = local.config["cluster_name"]
-  initial_nodes = local.config["initial_nodes"]
-  max_nodes     = local.config["max_nodes"]
+  source         = "./cluster"
+  cluster_name   = local.config["cluster_name"]
+  initial_nodes  = local.config["initial_nodes"]
+  max_nodes      = local.config["max_nodes"]
+  instance_types = local.config["instance_types"]
 }
 
 module "cert-manager" {

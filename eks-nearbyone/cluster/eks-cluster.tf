@@ -1,6 +1,7 @@
 variable "cluster_name" {}
 variable "initial_nodes" {}
 variable "max_nodes" {}
+variable "instance_types" {}
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
@@ -19,7 +20,7 @@ module "eks" {
 
   eks_managed_node_group_defaults = {
     root_volume_type = "gp2"
-    instance_types   = ["m4.2xlarge"]
+    instance_types   = var.instance_types
     tags = { "k8s.io/cluster-autoscaler/${var.cluster_name}" = "owned",
     "k8s.io/cluster-autoscaler/enabled" = "true" }
   }
